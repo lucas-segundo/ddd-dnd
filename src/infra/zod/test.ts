@@ -9,8 +9,7 @@ describe('ZodValidation', () => {
     })
 
     const validation = new ZodValidation(schema)
-    validation.validate({ name: 'John Doe' })
-    expect(validation.validate).toHaveBeenCalledWith({ name: 'John Doe' })
+    expect(() => validation.validate({ name: 'John Doe' })).not.toThrow()
   })
 
   it('should not be able to validate a schema with invalid input', () => {

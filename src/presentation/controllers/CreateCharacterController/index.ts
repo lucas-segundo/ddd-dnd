@@ -16,7 +16,7 @@ export class CreateCharacterController implements Controller {
     createCharacterInput: CreateCharacterInput,
   ): Promise<Response | ErrorResponse> {
     try {
-      return this.handleSuccess(createCharacterInput)
+      return await this.handleSuccess(createCharacterInput)
     } catch (error) {
       return this.handleError(error)
     }
