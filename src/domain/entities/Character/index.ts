@@ -1,3 +1,4 @@
+import { ValidationError } from 'src/domain/errors/ValidationError'
 import { HitPoints } from '../../valueObjects/HitPoints'
 
 export class Character {
@@ -23,8 +24,8 @@ export class Character {
   }
 }
 
-export class DamageToDeadCharacterError extends Error {
+export class DamageToDeadCharacterError extends ValidationError {
   constructor() {
-    super('Cannot damage a dead character')
+    super('DAMAGE_TO_DEAD_CHARACTER', 'Cannot damage a dead character')
   }
 }
