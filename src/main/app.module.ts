@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common'
 import { APP_FILTER } from '@nestjs/core'
 import { GlobalExceptionFilter } from 'src/main/filters/GlobalExceptionFilter'
 import { CharactersModule } from 'src/main/routes/characters/characters.module'
+import { WeaponsModule } from 'src/main/routes/weapons/weapons.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 
 @Module({
-  imports: [CharactersModule],
+  imports: [CharactersModule, WeaponsModule],
   controllers: [AppController],
   providers: [
     AppService,

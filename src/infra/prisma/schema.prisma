@@ -21,3 +21,12 @@ model Character {
 
   @@map("characters")
 }
+
+model Weapon {
+  id String @id @default(uuid())
+  name String
+  damageDieQuantity Int
+  damageDieSides Int
+
+  @@map("weapons")
+}
