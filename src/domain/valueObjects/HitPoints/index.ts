@@ -1,3 +1,5 @@
+import { ValidationError } from 'src/domain/errors/ValidationError'
+
 export class HitPoints {
   constructor(
     readonly current: number,
@@ -27,20 +29,23 @@ export class HitPoints {
   }
 }
 
-export class HitPointsLessThanZeroError extends Error {
+export class HitPointsLessThanZeroError extends ValidationError {
   constructor() {
-    super('Hit points cannot be less than 0')
+    super('HIT_POINTS_LESS_THAN_ZERO', 'Hit points cannot be less than 0')
   }
 }
 
-export class HitPointsGreaterThanMaxHitPointsError extends Error {
+export class HitPointsGreaterThanMaxHitPointsError extends ValidationError {
   constructor() {
-    super('Hit points cannot be greater than max hit points')
+    super(
+      'HIT_POINTS_GREATER_THAN_MAX_HIT_POINTS',
+      'Hit points cannot be greater than max hit points',
+    )
   }
 }
 
-export class DamageLessThanZeroError extends Error {
+export class DamageLessThanZeroError extends ValidationError {
   constructor() {
-    super('Hit points damage cannot be less than 0')
+    super('DAMAGE_LESS_THAN_ZERO', 'Hit points damage cannot be less than 0')
   }
 }
