@@ -2,6 +2,7 @@ import {
   CreateCharacterInput,
   CreateCharacterUseCase,
 } from 'src/app/useCases/CreateCharacter'
+import { Character } from 'src/domain/entities/Character'
 import { Validation } from 'src/presentation/validation'
 import { Controller, ErrorResponse, HTTPStatusCode, Response } from '../.'
 
@@ -19,7 +20,19 @@ export class CreateCharacterController implements Controller {
       await this.createCharacterUseCase.execute(createCharacterInput)
     return {
       statusCode: HTTPStatusCode.CREATED,
-      body: character,
+      body: this.toCharacterResponse(character),
+    }
+  }
+
+  private toCharacterResponse(character: Character) {
+    return {
+      id: character.id,
+      name: character.name,
+      hitPoints: {
+        current: character.hitPoints.current,
+        max: character.hitPoints.max,
+      },
+      isAlive: character.isAlive,
     }
   }
 }

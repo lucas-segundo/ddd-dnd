@@ -25,7 +25,12 @@ describe('CreateCharacterController', () => {
     )
     const response = await controller.execute(createCharacterInput)
     expect(response.statusCode).toBe(201)
-    expect(response.body).toEqual(expect.objectContaining({ name: 'John Doe' }))
+    expect(response.body).toEqual({
+      id: '1',
+      name: 'John Doe',
+      hitPoints: { current: 100, max: 100 },
+      isAlive: true,
+    })
   })
 
   it('should not be able to create a character with invalid input', async () => {
