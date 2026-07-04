@@ -4,7 +4,7 @@ import {
 } from 'src/app/useCases/CreateCharacter'
 import { Character } from 'src/domain/entities/Character'
 import { Validation } from 'src/presentation/validation'
-import { Controller, ErrorResponse, HTTPStatusCode, Response } from '../.'
+import { Controller, HTTPStatusCode, Response } from '../.'
 
 export class CreateCharacterController implements Controller {
   constructor(
@@ -12,9 +12,7 @@ export class CreateCharacterController implements Controller {
     private readonly validation: Validation,
   ) {}
 
-  async execute(
-    createCharacterInput: CreateCharacterInput,
-  ): Promise<Response | ErrorResponse> {
+  async execute(createCharacterInput: CreateCharacterInput): Promise<Response> {
     this.validation.validate(createCharacterInput)
     const character =
       await this.createCharacterUseCase.execute(createCharacterInput)
