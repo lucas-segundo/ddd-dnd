@@ -1,6 +1,6 @@
 import z from 'zod'
 import { ZodValidation } from '.'
-import { HTTPValidationError } from 'src/presentation/errors/HTTPValidationError'
+import { ValidationError } from 'src/domain/errors/ValidationError'
 
 describe('ZodValidation', () => {
   it('should be able to validate a schema', () => {
@@ -17,6 +17,6 @@ describe('ZodValidation', () => {
       name: z.string().min(1),
     })
     const validation = new ZodValidation(schema)
-    expect(() => validation.validate({ name: '' })).toThrow(HTTPValidationError)
+    expect(() => validation.validate({ name: '' })).toThrow(ValidationError)
   })
 })

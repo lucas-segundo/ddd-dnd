@@ -4,8 +4,7 @@ import { mockCharacterRepository } from 'src/domain/entities/Character/repositor
 import { HitPoints } from 'src/domain/valueObjects/HitPoints'
 import { CreateCharacterController } from '.'
 import { mockValidation } from 'src/presentation/validation/mock'
-import { HTTPValidationError } from 'src/presentation/errors/HTTPValidationError'
-import { ErrorResponse } from '..'
+import { ValidationError } from 'src/domain/errors/ValidationError'
 
 describe('CreateCharacterController', () => {
   it('should be able to create a character', async () => {
@@ -26,9 +25,7 @@ describe('CreateCharacterController', () => {
     )
     const response = await controller.execute(createCharacterInput)
     expect(response.statusCode).toBe(201)
-    expect(response.body).toEqual(
-      expect.objectContaining({ name: 'John Doe' }),
-    )
+    expect(response.body).toEqual(expect.objectContaining({ name: 'John Doe' }))
   })
 
   it('should not be able to create a character with invalid input', async () => {
@@ -41,7 +38,7 @@ describe('CreateCharacterController', () => {
     )
     const validation = mockValidation()
     validation.validate.mockImplementation(() => {
-      throw new HTTPValidationError({
+      throw new ValidationError('VALIDATION_ERROR', {
         name: {
           message: 'Name is required',
         },
@@ -52,15 +49,14 @@ describe('CreateCharacterController', () => {
       validation,
     )
 
-    const response = (await controller.execute(
-      createCharacterInput,
-    )) as ErrorResponse
-
-    expect(response.statusCode).toBe(400)
-    expect(response.code).toBe('VALIDATION_ERROR')
-    expect(response.body).toEqual({
-      name: {
-        message: 'Name is required',
+    await expect(
+      controller.execute(createCharacterInput),
+    ).rejects.toMatchObject({
+      code: 'VALIDATION_ERROR',
+      body: {
+        name: {
+          message: 'Name is required',
+        },
       },
     })
   })
