@@ -19,7 +19,7 @@ const createWeaponSchema = z.object({
   controllers: [WeaponsController],
   providers: [
     {
-      provide: CreateWeaponUseCase,
+      provide: CreateWeaponController,
       useFactory: () => {
         const repository = new PrismaWeaponRepository(prisma)
         const useCase = new CreateWeaponUseCase(repository)

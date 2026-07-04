@@ -15,7 +15,7 @@ const createCharacterSchema = z.object({
   controllers: [CharactersController],
   providers: [
     {
-      provide: CreateCharacterUseCase,
+      provide: CreateCharacterController,
       useFactory: () => {
         const repository = new PrismaCharacterRepository(prisma)
         const useCase = new CreateCharacterUseCase(repository)
