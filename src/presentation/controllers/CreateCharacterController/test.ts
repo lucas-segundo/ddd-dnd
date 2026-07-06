@@ -5,6 +5,7 @@ import { HitPoints } from 'src/domain/valueObjects/HitPoints'
 import { CreateCharacterController } from '.'
 import { mockValidation } from 'src/presentation/validation/mock'
 import { ValidationError } from 'src/domain/errors/ValidationError'
+import { Equipament } from 'src/domain/valueObjects/Equipament'
 
 describe('CreateCharacterController', () => {
   it('should be able to create a character', async () => {
@@ -14,7 +15,13 @@ describe('CreateCharacterController', () => {
 
     const characterRepository = mockCharacterRepository()
     characterRepository.create.mockResolvedValue(
-      new Character('1', 'John Doe', new HitPoints(100, 100), true),
+      new Character(
+        '1',
+        'John Doe',
+        new HitPoints(100, 100),
+        new Equipament(null),
+        true,
+      ),
     )
     const createCharacterUseCase = new CreateCharacterUseCase(
       characterRepository,

@@ -33,7 +33,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       }
     }
 
-    if (exception instanceof HttpException) {
+    if (exception instanceof HttpException && exception.getStatus() < 500) {
       const statusCode = exception.getStatus()
       const exceptionResponse = exception.getResponse()
 
@@ -49,6 +49,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       }
     }
 
+    console.log(exception)
     return {
       statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
       body: {

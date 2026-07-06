@@ -15,9 +15,12 @@ datasource db {
 model Character {
   id String @id @default(uuid())
   name String
-  hitPoints Int
-  maxHitPoints Int
-  isActive Boolean
+  hitPoints Int @map("hit_points")
+  maxHitPoints Int @map("max_hit_points")
+  isActive Boolean @map("is_active")
+
+  mainHandId String? @unique @map("main_hand_id")
+  mainHand Weapon? @relation(fields: [mainHandId], references: [id])
 
   @@map("characters")
 }
@@ -25,8 +28,10 @@ model Character {
 model Weapon {
   id String @id @default(uuid())
   name String
-  damageDieQuantity Int
-  damageDieSides Int
+  damageDieQuantity Int @map("damage_die_quantity")
+  damageDieSides Int @map("damage_die_sides")
+
+  character Character?
 
   @@map("weapons")
 }

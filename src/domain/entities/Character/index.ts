@@ -1,11 +1,13 @@
 import { ValidationError } from 'src/domain/errors/ValidationError'
 import { HitPoints } from '../../valueObjects/HitPoints'
+import { Equipament } from 'src/domain/valueObjects/Equipament'
 
 export class Character {
   constructor(
     public readonly id: string,
     public readonly name: string,
     public hitPoints: HitPoints,
+    public readonly equipament: Equipament,
     private _isAlive: boolean,
   ) {}
 

@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto'
 import { Character } from 'src/domain/entities/Character'
 import { CharacterRepository } from 'src/domain/entities/Character/repository'
+import { Equipament } from 'src/domain/valueObjects/Equipament'
 import { HitPoints } from 'src/domain/valueObjects/HitPoints'
 
 export class CreateCharacterUseCase {
@@ -11,6 +12,7 @@ export class CreateCharacterUseCase {
       randomUUID(),
       input.name,
       new HitPoints(100, 100),
+      new Equipament(null),
       true,
     )
 
