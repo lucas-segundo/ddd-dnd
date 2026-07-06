@@ -20,7 +20,7 @@ describe('CreateCharacterUseCase', () => {
     const createCharacterUseCase = new CreateCharacterUseCase(
       characterRepository,
     )
-    const character = await createCharacterUseCase.execute({ name: 'John Doe' })
-    expect(character.name).toBe('John Doe')
+    const id = await createCharacterUseCase.execute({ name: 'John Doe' })
+    expect(id).toBe('1')
   })
 })

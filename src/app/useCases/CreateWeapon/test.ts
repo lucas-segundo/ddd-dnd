@@ -11,11 +11,11 @@ describe('CreateWeaponUseCase', () => {
     )
 
     const createWeaponUseCase = new CreateWeaponUseCase(weaponRepository)
-    const weapon = await createWeaponUseCase.execute({
+    const id = await createWeaponUseCase.execute({
       name: 'Sword',
       damageDie: { quantity: 1, sides: 6 },
     })
 
-    expect(weapon.name).toBe('Sword')
+    expect(id).toBe('1')
   })
 })

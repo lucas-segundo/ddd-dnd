@@ -25,11 +25,7 @@ describe('CreateWeaponController', () => {
     const response = await controller.execute(createWeaponInput)
 
     expect(response.statusCode).toBe(201)
-    expect(response.body).toEqual({
-      id: '1',
-      name: 'Sword',
-      damageDie: { quantity: 1, sides: 6 },
-    })
+    expect(response.body).toEqual({ id: '1' })
   })
 
   it('should not be able to create a weapon with invalid input', async () => {

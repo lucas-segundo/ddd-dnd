@@ -7,7 +7,7 @@ import { HitPoints } from 'src/domain/valueObjects/HitPoints'
 export class CreateCharacterUseCase {
   constructor(private readonly characterRepository: CharacterRepository) {}
 
-  async execute(input: CreateCharacterInput): Promise<Character> {
+  async execute(input: CreateCharacterInput): Promise<string> {
     const character = new Character(
       randomUUID(),
       input.name,
@@ -16,7 +16,9 @@ export class CreateCharacterUseCase {
       true,
     )
 
-    return this.characterRepository.create(character)
+    const created = await this.characterRepository.create(character)
+
+    return created.id
   }
 }
 

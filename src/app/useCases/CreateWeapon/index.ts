@@ -6,14 +6,16 @@ import { DiceDie } from 'src/domain/valueObjects/Dice'
 export class CreateWeaponUseCase {
   constructor(private readonly weaponRepository: WeaponRepository) {}
 
-  async execute(input: CreateWeaponInput): Promise<Weapon> {
+  async execute(input: CreateWeaponInput): Promise<string> {
     const weapon = new Weapon(
       randomUUID(),
       input.name,
       new DiceDie(input.damageDie.quantity, input.damageDie.sides),
     )
 
-    return this.weaponRepository.create(weapon)
+    const created = await this.weaponRepository.create(weapon)
+
+    return created.id
   }
 }
 
