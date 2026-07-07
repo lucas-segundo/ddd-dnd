@@ -6,6 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common'
 import { Response } from 'express'
+import { NotFoundError } from 'src/domain/errors/NotFoundError'
 import { ValidationError } from 'src/domain/errors/ValidationError'
 
 @Catch()
@@ -26,6 +27,16 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     if (exception instanceof ValidationError) {
       return {
         statusCode: HttpStatus.BAD_REQUEST,
+        body: {
+          code: exception.code,
+          body: exception.body,
+        },
+      }
+    }
+
+    if (exception instanceof NotFoundError) {
+      return {
+        statusCode: HttpStatus.NOT_FOUND,
         body: {
           code: exception.code,
           body: exception.body,
