@@ -2,7 +2,7 @@ import {
   Character as PrismaCharacter,
   Weapon as PrismaWeapon,
 } from 'generated/prisma/client'
-import { CharacterReadModel } from 'src/app/readModels/Character'
+import { CharacterReadModel } from 'src/app/models/Character'
 import { CharacterInclude } from 'src/app/queries/CharacterReadRepository'
 
 type PrismaCharacterWithMainHand = PrismaCharacter & {

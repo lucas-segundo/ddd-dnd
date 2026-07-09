@@ -1,4 +1,4 @@
-import { CharacterReadModel } from 'src/app/readModels/Character'
+import { CharacterReadModel } from 'src/app/models/Character'
 
 export const CHARACTER_INCLUDES = ['mainHand'] as const
 export type CharacterInclude = (typeof CHARACTER_INCLUDES)[number]

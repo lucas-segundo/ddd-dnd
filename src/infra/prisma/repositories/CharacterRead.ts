@@ -1,5 +1,5 @@
 import { PrismaClient } from '../../../../generated/prisma/client'
-import { CharacterReadModel } from 'src/app/readModels/Character'
+import { CharacterReadModel } from 'src/app/models/Character'
 import {
   CharacterQueryParams,
   CharacterReadRepository,
