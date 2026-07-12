@@ -26,8 +26,8 @@ export class GetCharactersRouteController {
           eq: parsed.isAlive,
         },
         hitPoints: {
-          gte: parsed.hitPointsGte,
-          lte: parsed.hitPointsLte,
+          gte: parsed.hitPoints?.gte,
+          lte: parsed.hitPoints?.lte,
         },
       },
       pagination: {
@@ -45,8 +45,10 @@ export interface Query {
   perPage?: string
   name?: string
   isAlive?: string
-  hitPointsGte?: string
-  hitPointsLte?: string
+  hitPoints?: {
+    gte?: string
+    lte?: string
+  }
 }
 
 export const schema = z.object({
@@ -61,6 +63,10 @@ export const schema = z.object({
     .enum(['true', 'false'])
     .transform((value) => value === 'true')
     .optional(),
-  hitPointsGte: z.coerce.number().int().optional(),
-  hitPointsLte: z.coerce.number().int().optional(),
+  hitPoints: z
+    .object({
+      gte: z.coerce.number().int().optional(),
+      lte: z.coerce.number().int().optional(),
+    })
+    .optional(),
 })

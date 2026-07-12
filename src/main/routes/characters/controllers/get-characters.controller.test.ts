@@ -25,8 +25,10 @@ describe('GetCharactersRouteController', () => {
         perPage: '10',
         name: 'John',
         isAlive: 'true',
-        hitPointsGte: '1',
-        hitPointsLte: '100',
+        hitPoints: {
+          gte: '1',
+          lte: '100',
+        },
       })
 
       expect(result).toEqual([
