@@ -17,7 +17,7 @@ model Character {
   name String
   hitPoints Int @map("hit_points")
   maxHitPoints Int @map("max_hit_points")
-  isActive Boolean @map("is_active")
+  isAlive Boolean @map("is_alive")
 
   mainHandId String? @unique @map("main_hand_id")
   mainHand Weapon? @relation(fields: [mainHandId], references: [id])

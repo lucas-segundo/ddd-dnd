@@ -10,7 +10,7 @@ type PrismaCharacterWithMainHand = PrismaCharacter & {
 }
 
 export class PrismaCharacterReadMapper {
-  static toReadModel(
+  static toModel(
     record: PrismaCharacterWithMainHand,
     include: CharacterInclude[] = [],
   ): CharacterReadModel {
@@ -19,7 +19,7 @@ export class PrismaCharacterReadMapper {
       name: record.name,
       hitPoints: record.hitPoints,
       maxHitPoints: record.maxHitPoints,
-      isAlive: record.isActive,
+      isAlive: record.isAlive,
     }
 
     if (include.includes('mainHand')) {

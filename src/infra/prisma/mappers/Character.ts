@@ -19,7 +19,7 @@ export class PrismaCharacterMapper {
       input.name,
       new HitPoints(input.hitPoints, input.maxHitPoints),
       new Equipament(input.mainHand ? this.mapWeapon(input.mainHand) : null),
-      input.isActive,
+      input.isAlive,
     )
   }
 

@@ -3,6 +3,7 @@ import { CharacterReadModel } from 'src/app/models/Character'
 import {
   CharacterQueryParams,
   CharacterReadRepository,
+  FindAllParams,
 } from 'src/app/queries/CharacterReadRepository'
 import { PrismaCharacterReadMapper } from '../mappers/CharacterRead'
 
@@ -20,6 +21,24 @@ export class PrismaCharacterReadRepository implements CharacterReadRepository {
       },
     })
 
-    return PrismaCharacterReadMapper.toReadModel(record, params.include)
+    return PrismaCharacterReadMapper.toModel(record, params.include)
+  }
+
+  async findAll(params: FindAllParams): Promise<CharacterReadModel[]> {
+    const records = await this.prisma.character.findMany({
+      where: {
+        ...params.where,
+        isAlive: params.where?.isAlive?.eq,
+      },
+      take: params.limit,
+      skip: params.offset,
+      include: {
+        mainHand: params.include?.includes('mainHand'),
+      },
+    })
+
+    return records.map((record) =>
+      PrismaCharacterReadMapper.toModel(record, params.include),
+    )
   }
 }

@@ -13,7 +13,7 @@ export class PrismaCharacterRepository implements CharacterRepository {
         name: character.name,
         hitPoints: character.hitPoints.current,
         maxHitPoints: character.hitPoints.max,
-        isActive: character.isAlive,
+        isAlive: character.isAlive,
       },
       include: {
         mainHand: true,
