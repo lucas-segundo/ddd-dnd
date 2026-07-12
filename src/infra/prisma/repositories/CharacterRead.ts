@@ -30,8 +30,8 @@ export class PrismaCharacterReadRepository implements CharacterReadRepository {
         ...params.where,
         isAlive: params.where?.isAlive?.eq,
       },
-      take: params.limit,
-      skip: params.offset,
+      skip: (params.pagination?.page - 1) * params.pagination?.perPage,
+      take: params.pagination?.perPage,
       include: {
         mainHand: params.include?.includes('mainHand'),
       },

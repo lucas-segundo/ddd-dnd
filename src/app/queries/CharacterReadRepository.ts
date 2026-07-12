@@ -18,8 +18,10 @@ export interface CharacterReadRepository {
 
 export interface FindAllParams {
   where?: Where
-  limit?: number
-  offset?: number
+  pagination?: {
+    page: number
+    perPage: number
+  }
   include?: CharacterInclude[]
 }
 
@@ -28,8 +30,8 @@ interface Where {
     contains: string
   }
   hitPoints?: {
-    gte: number
-    lte: number
+    gte?: number
+    lte?: number
   }
   isAlive?: {
     eq: boolean

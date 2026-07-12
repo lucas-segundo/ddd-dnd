@@ -5,10 +5,12 @@ import { PrismaCharacterReadRepository } from 'src/infra/prisma/repositories/Cha
 import { PrismaCharacterRepository } from 'src/infra/prisma/repositories/Character'
 import { CreateCharacterRouteController } from './controllers/create-character.controller'
 import { GetCharacterByIdRouteController } from './controllers/get-character-by-id.controller'
+import { GetCharactersRouteController } from './controllers/get-characters.controller'
 
 @Module({
   controllers: [
     CreateCharacterRouteController,
+    GetCharactersRouteController,
     GetCharacterByIdRouteController,
   ],
   providers: [
