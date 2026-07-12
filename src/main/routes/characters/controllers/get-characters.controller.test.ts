@@ -64,7 +64,10 @@ describe('GetCharactersRouteController', () => {
       expect(result).toEqual([])
       expect(characterReadRepository.findAll).toHaveBeenCalledWith({
         include: undefined,
-        pagination: undefined,
+        pagination: {
+          page: 1,
+          perPage: 10,
+        },
         where: {
           name: { contains: undefined },
           isAlive: { eq: undefined },
